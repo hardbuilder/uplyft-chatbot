@@ -1,0 +1,9 @@
+#chat-box div {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+strong {
+  color: #007bff;
+}
+
