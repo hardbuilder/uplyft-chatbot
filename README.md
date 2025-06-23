@@ -102,6 +102,13 @@ http://127.0.0.1:5000/history/<your-username>
 
 Made with ❤️ by Om
 
+## ScreenShots
+
+![image](https://github.com/user-attachments/assets/e96fef01-5739-4df6-a678-276355ddfab6)
+![image](https://github.com/user-attachments/assets/599c3290-ebf8-4401-9d9f-d7b3d2db055d)
+![image](https://github.com/user-attachments/assets/5e8f342b-1874-4802-93e1-7d6d4d984ff1)
+
+
 ---
 
 ## 📜 License
