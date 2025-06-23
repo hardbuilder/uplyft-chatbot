@@ -1,39 +1,148 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Uplyft Chatbot</title>
-  <link rel="stylesheet" href="style.css">
-  <head>
-  ...
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen">
+  
+  <!-- Animated Background Elements -->
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
 
-</head>
-<body class="bg-light">
-  <div class="container py-5">
+  <div class="container py-5 relative z-10">
+    
+    <!-- Header -->
+    <div class="text-center mb-5 animate-fade-in">
+      <h1 class="display-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-3">
+        <i class="fas fa-robot me-3"></i>Uplyft AI Assistant
+      </h1>
+      <p class="lead text-gray-600">Your intelligent e-commerce companion</p>
+    </div>
 
     <!-- Login Form -->
-    <div id="login-container" class="card p-4 shadow-sm mx-auto" style="max-width: 400px;">
-      <h3 class="mb-3 text-center">Login</h3>
-      <input type="text" id="username" class="form-control mb-3" placeholder="Enter your username">
-      <button class="btn btn-primary w-100" onclick="login()">Login</button>
+    <div id="login-container" class="glass-card p-5 shadow-xl mx-auto animate-slide-up" style="max-width: 450px;">
+      <div class="text-center mb-4">
+        <div class="login-icon mb-3">
+          <i class="fas fa-user-circle text-6xl text-purple-500"></i>
+        </div>
+        <h3 class="h4 font-semibold text-gray-800">Welcome Back!</h3>
+        <p class="text-gray-600 mb-0">Enter your username to continue</p>
+      </div>
+      
+      <div class="input-group-modern mb-4">
+        <span class="input-icon">
+          <i class="fas fa-user text-purple-500"></i>
+        </span>
+        <input type="text" id="username" class="form-control-modern" placeholder="Enter your username">
+      </div>
+      
+      <button class="btn btn-gradient w-100 btn-lg animate-pulse-subtle" onclick="login()">
+        <i class="fas fa-sign-in-alt me-2"></i>Login
+      </button>
     </div>
 
     <!-- Chat Interface -->
-    <div id="chat-container" class="card p-4 shadow-sm mx-auto" style="max-width: 600px; display: none;">
-      <h3 class="mb-3 text-center">Uplyft E-commerce Chatbot</h3>
-      <div id="chat-box" class="border rounded p-3 mb-3" style="height: 300px; overflow-y: auto; background: #fafafa;"></div>
-      <div class="input-group">
-        <input type="text" id="user-input" class="form-control" placeholder="Ask me about products...">
-        <button class="btn btn-success" onclick="sendMessage()">Send</button>
+    <div id="chat-container" class="glass-card p-4 shadow-xl mx-auto animate-slide-up" style="max-width: 700px; display: none;">
+      
+      <!-- Chat Header -->
+      <div class="chat-header text-center mb-4">
+        <h3 class="h4 font-semibold text-gray-800 mb-2">
+          <i class="fas fa-comments text-purple-500 me-2"></i>
+          Uplyft E-commerce Chatbot
+        </h3>
+        <div class="status-indicator">
+          <span class="status-dot animate-pulse"></span>
+          <span class="text-sm text-gray-600">AI Assistant is online</span>
+        </div>
+      </div>
+
+      <!-- Chat Messages -->
+      <div id="chat-box" class="chat-messages p-4 mb-4"></div>
+
+      <!-- Message Input -->
+      <div class="message-input-container">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-message text-purple-500"></i>
+          </span>
+          <input type="text" id="user-input" class="form-control border-start-0 border-end-0" 
+                 placeholder="Ask me about products, prices, categories..." 
+                 onkeypress="if(event.key === 'Enter') sendMessage()">
+          <button class="btn btn-success btn-send" onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions mt-3">
+          <span class="text-sm text-gray-600 me-2">Try:</span>
+          <button class="btn btn-outline-primary btn-sm me-2" onclick="quickMessage('show me electronics')">
+            <i class="fas fa-laptop me-1"></i>Electronics
+          </button>
+          <button class="btn btn-outline-success btn-sm me-2" onclick="quickMessage('books under 1000')">
+            <i class="fas fa-book me-1"></i>Books < ₹1000
+          </button>
+          <button class="btn btn-outline-info btn-sm" onclick="quickMessage('textiles below 500')">
+            <i class="fas fa-tshirt me-1"></i>Textiles < ₹500
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-grid mt-5 animate-fade-in-up">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card text-center p-4">
+            <i class="fas fa-search text-4xl text-blue-500 mb-3"></i>
+            <h5 class="font-semibold">Smart Search</h5>
+            <p class="text-gray-600 text-sm">Find products by category, price, or description</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center p-4">
+            <i class="fas fa-history text-4xl text-green-500 mb-3"></i>
+            <h5 class="font-semibold">Chat History</h5>
+            <p class="text-gray-600 text-sm">All conversations are saved and searchable</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center p-4">
+            <i class="fas fa-bolt text-4xl text-yellow-500 mb-3"></i>
+            <h5 class="font-semibold">Instant Results</h5>
+            <p class="text-gray-600 text-sm">Get product recommendations in seconds</p>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
   <script src="script.js"></script>
 </body>
-
 </html>
